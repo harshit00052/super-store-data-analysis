@@ -2,13 +2,28 @@ name : harshit kumar
 
 # SUPER-STORE-DATA-ANALYSIS
 
-Here i have and cleaned the dataset and performed Core Analyses like :- 
-### Univariate Analysis: Reviewing individual variables.
-### Bivariate Analysis: Investigating relationships between two variables.
-### Profitability & Geography: Grouping data by Branch or City to determine which location drives the highest gross income
+## workflow for cleaning 
+
+1) Understand the dataset :- df.sample() , df.info()
+2) Missing values check 
+3) Check data quality   :- isnull(), duplicated(), datetime
+4) Clean text columns :- Remove unnecessary spaces 
+5) Handle outliers :- Quantity , discount, unit_price shouldn't be negative.
+6) Feature Engineering :- Create useful columns.
+7) Group the data :- Sales by category, Orders by state, Average profit, Monthly sales, Top customers
 
 
-## i have also answered Business Questions like 
+## performed Core Analyses like :- 
+
+1) Univariate Analysis: Reviewing individual variables.
+2) Bivariate Analysis: Investigating relationships between two variables.
+3) Profitability & Geography: Grouping data by Branch or City to determine which location drives the highest gross income
+
+## visualization
+
+
+## I have also answered Business Questions like 
+
 1) Which category makes the most sales?
 2) Which category makes the most profit?
 3) Which products lose money?
