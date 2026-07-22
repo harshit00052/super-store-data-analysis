@@ -19,6 +19,13 @@ name : harshit kumar
 2) Bivariate Analysis: Investigating relationships between two variables.
 3) Profitability & Geography: Grouping data by Branch or City to determine which location drives the highest gross income
 
+
+## for learning purpose while doing analysis must answer
+1) What happened? (Observation)
+2) Why might it have happened? (Possible reason)
+3) What is the business impact? (Insight)
+4) What should the company do? (Recommendation)
+
 ## visualization
 
 
