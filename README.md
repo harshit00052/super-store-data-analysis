@@ -1,7 +1,7 @@
 name : harshit kumar 
 
 # SUPER-STORE-DATA-ANALYSIS
-
+###### This project uses a synthetic retail dataset downloaded from Kaggle for educational purposes.
 ## workflow for cleaning 
 
 1) Understand the dataset :- df.sample() , df.info()
