@@ -1,5 +1,7 @@
 import pandas as pd
 import streamlit as st
+import plotly.graph_objects as go
+from numpy._core.defchararray import title
 
 st.set_page_config(page_title="e-commerce data analysis", layout="wide")
 df = pd.read_csv('/workspaces/super-store-data-analysis/dataset/cleaned_data.csv')
@@ -87,3 +89,25 @@ with col11:
 
 with col12:
     st.metric("Total Quantity Sold", f"{df['quantity'].sum()}")
+
+
+col13, col14 = st.columns(2)
+with col13:
+    temp = df.pivot_table(columns=['product_category'], index=['month', 'month_num'], values='revenue' ,aggfunc='sum').reset_index().sort_values(by='month_num')
+    fig = go.Figure()
+    for cols in temp.columns[2:]:
+        fig.add_trace(go.Scatter(y=temp[cols], x=temp['month'], name=cols))
+
+    fig.update_layout(title='monthly sale of each category', xaxis_title='month', yaxis_title='sale')
+    st.plotly_chart(fig, use_container_width=True)
+
+
+col15, col16 = st.columns(2)
+with col15:
+    temp = df.pivot_table(columns=['region'], index=['month', 'month_num'], values='revenue' ,aggfunc='sum').reset_index().sort_values(by='month_num')
+    fig = go.Figure()
+    for col in temp.columns[2:]:
+        fig.add_trace(go.Bar(x=temp['month'], y=temp[col], name=col))
+    fig.update_layout(title="Region Wise Analysis", xaxis_title="Months", yaxis_title="Revenue")
+    st.plotly_chart(fig, use_container_width=True)
+    

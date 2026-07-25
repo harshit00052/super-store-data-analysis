@@ -42,7 +42,7 @@ name : harshit kumar
 
 
 
-my ashboard structure :- 
+my dashboard blueprint :- 
 
 --------------------------------------------------------------
                 E-Commerce Sales Dashboard
