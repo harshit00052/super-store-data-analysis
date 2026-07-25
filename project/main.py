@@ -22,21 +22,68 @@ st.header("E-Commerce Sales Dashboard")
 col1, col2, col3, col4, col5, col6 = st.columns(6)
 with col1:
     year_list = df['year'].unique().tolist()
-    tempYear = st.selectbox("YEAR ", year_list)
+    tempYear = st.multiselect("YEAR ", year_list)
+
 with col2:
     quarter_list = df['year_quarter'].unique().tolist()
-    tempYear = st.selectbox("QUARTER ", quarter_list)
+    temp_quarter = st.multiselect("QUARTER ", quarter_list)
+
 with col3:
     month_list = df['month'].unique().tolist()
-    tempMonth = st.selectbox("MONTH ", month_list)
+    temp_Month = st.multiselect("MONTH ", month_list)
+
 with col4:
     region_list = df['region'].unique().tolist()
-    tempMonth = st.selectbox("REGION ", region_list)
+    temp_region = st.multiselect("REGION ", region_list)
+
 with col5:
     product_category_list = df['product_category'].unique().tolist()
-    product_cat = st.selectbox("PRODUCT CATAGORY ", product_category_list)
+    product_cat = st.multiselect("PRODUCT CATAGORY ", product_category_list)
+
 with col6:
     payment_method_list = df['payment_method'].unique().tolist()
-    payment_mtd = st.selectbox("PAYMENT METHOD ", payment_method_list)
+    payment_mtd = st.multiselect("PAYMENT METHOD ", payment_method_list)
+
+btn = st.button('FIND')
 
 
+if(btn):
+    if not tempYear:
+        tempYear = year_list
+
+    if not temp_quarter:
+        temp_quarter = quarter_list
+
+    if not temp_Month:
+        temp_Month = month_list
+
+    if not product_cat:
+        product_cat = product_category_list
+
+    if not temp_region:
+        temp_region = region_list
+
+    if not payment_mtd:
+       payment_mtd = payment_method_list
+
+df = df[(df['year'].isin(tempYear))& (df['year_quarter'].isin(temp_quarter)) &(df['month'].isin(temp_Month)) & (df['region'].isin(temp_region)) & (df['product_category'].isin(product_cat)) & (df['payment_method'].isin(payment_mtd))]
+st.write("")
+
+col7, col8, col9, col10 , col11, col12= st.columns(6)
+with col7:
+    st.metric("Total Revenue", f"₹{round(df['revenue'].sum(), 2)}")
+
+with col8:
+    st.metric("Total Order", f"{df['order_id'].count()}")
+
+with col9:
+    st.metric("Avg Rating", f"{round(df['customer_rating'].mean(),2)}")
+
+with col10:
+    st.metric("Avg Delivery Days", f"{round(df['delivery_days'].mean(),2)}")
+
+with col11:
+    st.metric("Total Customers", f"{df['customer_id'].nunique()}")
+
+with col12:
+    st.metric("Total Quantity Sold", f"{df['quantity'].sum()}")

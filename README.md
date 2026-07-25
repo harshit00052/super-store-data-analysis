@@ -39,3 +39,51 @@ name : harshit kumar
 6) Which customer spent the most?
 7) Which shipping mode is most used?
 8) Does higher discount increase or decrease profit?
+
+
+
+my ashboard structure :- 
+
+--------------------------------------------------------------
+                E-Commerce Sales Dashboard
+--------------------------------------------------------------
+
+Filters
+--------------------------------------------------------------
+Year | Quarter | Month | Region | Product Category | Payment
+--------------------------------------------------------------
+
+KPI Cards
+--------------------------------------------------------------
+Total Revenue | Total Orders | Avg Rating | Avg Delivery Days
+--------------------------------------------------------------
+Total Customers | Total Quantity Sold
+--------------------------------------------------------------
+
+Row 1
+--------------------------------------------------------------
+Revenue Trend (Line Chart) | Revenue by Category (Bar Chart)
+--------------------------------------------------------------
+
+Row 2
+--------------------------------------------------------------
+Revenue by Region           | Payment Method Distribution
+(Map/Bar)                   (Pie/Donut)
+--------------------------------------------------------------
+
+Row 3
+--------------------------------------------------------------
+Top 10 Customers by Revenue | Top Products/Categories
+--------------------------------------------------------------
+
+Row 4
+--------------------------------------------------------------
+Customer Rating Distribution | Delivery Days Analysis
+(Histogram)                  (Box Plot)
+
+--------------------------------------------------------------
+
+Bottom
+--------------------------------------------------------------
+Raw Dataset (Interactive Table)
+--------------------------------------------------------------
