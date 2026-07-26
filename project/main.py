@@ -2,9 +2,14 @@ import pandas as pd
 import streamlit as st
 import plotly.graph_objects as go
 from numpy._core.defchararray import title
+from pathlib import Path
 
 st.set_page_config(page_title="e-commerce data analysis", layout="wide", page_icon='/workspaces/super-store-data-analysis/project/logo.png')
-df = pd.read_csv('/workspaces/super-store-data-analysis/dataset/cleaned_data.csv')
+
+BASE_DIR = Path(__file__).resolve().parent
+DATA_PATH = BASE_DIR.parent / "dataset" / "cleaned_data.csv"
+df = pd.read_csv(DATA_PATH)
+
 df['order_date'] = pd.to_datetime(df['order_date'])
 
 st.markdown(
