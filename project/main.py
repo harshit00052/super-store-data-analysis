@@ -3,8 +3,7 @@ import streamlit as st
 import plotly.graph_objects as go
 from numpy._core.defchararray import title
 from pathlib import Path
-
-st.set_page_config(page_title="e-commerce data analysis", layout="wide", page_icon='/workspaces/super-store-data-analysis/project/logo.png')
+from PIL import Image
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_PATH = BASE_DIR.parent / "dataset" / "cleaned_data.csv"
@@ -26,9 +25,15 @@ st.markdown(
 st.write("")
 st.write("")
 
+BASE_DIR = Path(__file__).resolve().parent
+logo = Image.open(BASE_DIR / "logo.png")
+
+st.set_page_config(page_title="e-commerce data analysis", layout="wide", page_icon=logo)
+
+
 col19, col20 = st.columns([0.1, 0.9], vertical_alignment="center")
 with col19:
-    st.image('/workspaces/super-store-data-analysis/project/logo.png', width='stretch')
+    st.image(logo, width='stretch')
 with col20:
     st.header("E-Commerce Sales Dashboard")
 
