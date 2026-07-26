@@ -3,7 +3,7 @@ import streamlit as st
 import plotly.graph_objects as go
 from numpy._core.defchararray import title
 
-st.set_page_config(page_title="e-commerce data analysis", layout="wide")
+st.set_page_config(page_title="e-commerce data analysis", layout="wide", page_icon='/workspaces/super-store-data-analysis/project/logo.png')
 df = pd.read_csv('/workspaces/super-store-data-analysis/dataset/cleaned_data.csv')
 df['order_date'] = pd.to_datetime(df['order_date'])
 
@@ -19,25 +19,31 @@ st.markdown(
     unsafe_allow_html=True
 )
 st.write("")
-st.header("E-Commerce Sales Dashboard")
+st.write("")
 
-col1, col2, col3, col4, col5, col6 = st.columns(6)
-with col1:
-    year_list = df['year'].unique().tolist()
-    tempYear = st.multiselect("YEAR ", year_list)
+col19, col20 = st.columns([0.1, 0.9], vertical_alignment="center")
+with col19:
+    st.image('/workspaces/super-store-data-analysis/project/logo.png', width='stretch')
+with col20:
+    st.header("E-Commerce Sales Dashboard")
 
+year_list = df['year'].unique().tolist()
+tempYear = st.multiselect("YEAR ", year_list)
+
+month_list = df['month'].unique().tolist()
+temp_Month = st.multiselect("MONTH ", month_list)
+
+col2, col4 = st.columns(2)
 with col2:
     quarter_list = df['year_quarter'].unique().tolist()
     temp_quarter = st.multiselect("QUARTER ", quarter_list)
-
-with col3:
-    month_list = df['month'].unique().tolist()
-    temp_Month = st.multiselect("MONTH ", month_list)
 
 with col4:
     region_list = df['region'].unique().tolist()
     temp_region = st.multiselect("REGION ", region_list)
 
+
+col5, col6 = st.columns(2)
 with col5:
     product_category_list = df['product_category'].unique().tolist()
     product_cat = st.multiselect("PRODUCT CATAGORY ", product_category_list)
@@ -126,16 +132,20 @@ with col16:
     fig.update_layout(title="Payment Method Distribution")
     st.plotly_chart(fig, use_container_width=True)
 
+
 col17, col18 = st.columns(2)
 with col17:
+    st.subheader("📄 Top 10 Customers by Revenue")
     temp = df.groupby('customer_id')['revenue'].sum().reset_index().sort_values(by='revenue', ascending=False).head(10)
     st.dataframe(temp, use_container_width=True, hide_index=True)
+
 with col18:
+    st.subheader("📄  Top Products-Categories")
     temp = df.groupby('product_category').agg({'quantity':'sum', 'revenue':'sum'}).reset_index().sort_values(by='revenue', ascending=False)
     st.dataframe(temp, use_container_width=True, hide_index=True)
 
-st.subheader("📄 Raw Dataset")
 
+st.subheader("📄 Raw Dataset")
 st.dataframe(
     df,
     use_container_width=True,
