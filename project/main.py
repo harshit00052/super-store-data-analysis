@@ -101,6 +101,14 @@ with col13:
     fig.update_layout(title='monthly sale of each category', xaxis_title='month', yaxis_title='sale')
     st.plotly_chart(fig, use_container_width=True)
 
+with col14:
+    temp = df.pivot_table(index=['month', 'month_num'], columns='year', values='revenue', aggfunc='sum').reset_index().sort_values(by='month_num')
+    fig = go.Figure()
+    for col in temp.columns[2:]:
+        fig.add_trace(go.Scatter(x=temp['month'], y=temp[col], name=col))
+    fig.update_layout(title="Revenue Trend", xaxis_title="Month", yaxis_title="Year")
+    st.plotly_chart(fig, use_container_width=True)
+
 
 col15, col16 = st.columns(2)
 with col15:
@@ -110,4 +118,26 @@ with col15:
         fig.add_trace(go.Bar(x=temp['month'], y=temp[col], name=col))
     fig.update_layout(title="Region Wise Analysis", xaxis_title="Months", yaxis_title="Revenue")
     st.plotly_chart(fig, use_container_width=True)
-    
+
+with col16:
+    temp = df.groupby('payment_method')['order_id'].size().reset_index()
+    fig = go.Figure()
+    fig.add_trace(go.Pie(labels=temp['payment_method'], values=temp['order_id']))
+    fig.update_layout(title="Payment Method Distribution")
+    st.plotly_chart(fig, use_container_width=True)
+
+col17, col18 = st.columns(2)
+with col17:
+    temp = df.groupby('customer_id')['revenue'].sum().reset_index().sort_values(by='revenue', ascending=False).head(10)
+    st.dataframe(temp, use_container_width=True, hide_index=True)
+with col18:
+    temp = df.groupby('product_category').agg({'quantity':'sum', 'revenue':'sum'}).reset_index().sort_values(by='revenue', ascending=False)
+    st.dataframe(temp, use_container_width=True, hide_index=True)
+
+st.subheader("📄 Raw Dataset")
+
+st.dataframe(
+    df,
+    use_container_width=True,
+    hide_index=True
+)
